@@ -8,5 +8,4 @@ pylint
 boto3
 telegram
 telegram_bot
-telegram_bot_sdk
 telegram_bot_deploy
