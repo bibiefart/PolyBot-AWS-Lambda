@@ -45,10 +45,10 @@ def process_msg(msg):
 
 def lambda_handler(event, context):
     logger.info(f'New event {event}')
-    #sqs = boto3.resource('sqs', region_name=config.get('aws_region'))
-    #workers_queue = sqs.get_queue_by_name(QueueName=config.get('bot_to_worker_queue_name'))
-    sqs = boto3.resource('sqs')
-    workers_queue = sqs.get_queue_by_name(QueueName='bibi-sqs-for-lamda-polybot')
+    sqs = boto3.resource('sqs', region_name=config.get('aws_region'))
+    workers_queue = sqs.get_queue_by_name(QueueName=config.get('bot_to_worker_queue_name'))
+    #sqs = boto3.resource('sqs')
+    #workers_queue = sqs.get_queue_by_name(QueueName='bibi-sqs-for-lamda-polybot')
     for message in workers_queue.receive_messages(MessageAttributeNames=['Author']):
         process_msg(message.body)
 
