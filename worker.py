@@ -35,13 +35,17 @@ def upload_file(file_name, bucket, object_name=None):
     return True
 
 def process_msg(msg):
+    cmd = "rm -rf /tmp/*"
+    returned_value = os.system(cmd)  # returns the exit code in unix
+    logger.info('returned value:', returned_value)
     logger.info(f'processing msg')
     locations = search_download_youtube_video(msg)
     logger.info(f'locations {locations}')
     file_name = f"{locations[0]}"
     bucket = "bibi-s3-v3"
-    logger.info(f'File To Upload {file_name.strip()}')
-    upload_file(file_name, bucket)
+    logger.info(f'File To Upload {file_name}')
+    head, tail = os.path.split(f"{file_name}")
+    upload_file(file_name, bucket, tail)
 
     # TODO upload the downloaded video to your S3 bucket
 
