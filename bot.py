@@ -83,10 +83,10 @@ if __name__ == '__main__':
     with open('config.json') as f:
         config = json.load(f)
 
-    #sqs = boto3.resource('sqs', region_name=config.get('aws_region'))
-    sqs = boto3.resource('sqs')
-    #workers_queue = sqs.get_queue_by_name(QueueName=config.get('bot_to_worker_queue_name'))
-    workers_queue = sqs.get_queue_by_name(QueueName='bibi-sqs-for-lamda-polybot')
+    sqs = boto3.resource('sqs', region_name=config.get('aws_region'))
+    #sqs = boto3.resource('sqs')
+    workers_queue = sqs.get_queue_by_name(QueueName=config.get('bot_to_worker_queue_name'))
+    #workers_queue = sqs.get_queue_by_name(QueueName='bibi-sqs-for-lamda-polybot')
     asg = boto3.client('autoscaling', region_name=config.get('aws_region'))
 
     my_bot = YoutubeObjectDetectBot(_token)

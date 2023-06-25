@@ -1,5 +1,6 @@
 {
   "aws_region": "eu-west-1",
   "bot_to_worker_queue_name": "bibi-sqs-for-lamda-polybot",
-  "autoscaling_group_name": "bibi-auto-scaling"
+  "autoscaling_group_name": "bibi-auto-scaling",
+  "queue_url": "https://sqs.eu-west-1.amazonaws.com/019273956931/bibi-sqs-for-lamda-polybot"
 }
